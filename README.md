@@ -5,6 +5,8 @@
 This spins up 1 control-plane node and 3 worker nodes in Hetzner with `k3s`.  
 The Terraform code assumes you have set an `HCLOUD_TOKEN` environment variable.
 
+Based on <https://community.hetzner.com/tutorials/setup-your-own-scalable-kubernetes-cluster>.
+
 ## Variables
 
 You might want to change the one variable that is in `variables.tf` to point to
