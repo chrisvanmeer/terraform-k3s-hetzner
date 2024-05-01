@@ -46,6 +46,11 @@ worker-node-02       Ready    <none>                 21m   v1.29.4+k3s1
 worker-node-03       Ready    <none>                 21m   v1.29.4+k3s1
 ```
 
+## Disclaimer
+
+**This is not a production grade setup.** This lacks firewalling and uses a shared private key, 
+which is fine for a testing environment, but **not** for a production setup.
+
 ## Author
 
 - Chris van Meer <c.v.meer@atcomputing.nl>
