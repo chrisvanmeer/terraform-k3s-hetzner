@@ -1,0 +1,26 @@
+#cloud-config
+packages:
+  - curl
+users:
+  - name: chris
+    ssh-authorized-keys:
+      - ${trimspace(own_public)}
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+  - name: cluster
+    ssh-authorized-keys:
+      - ${trimspace(own_public)}
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+
+write_files:
+  - path: /root/.ssh/id_ed25519
+    content: |
+      ${indent(6, trimspace(worker_private))}
+    permissions: "0600"
+
+runcmd:
+  - apt-get update -y
+  - until curl -k https://10.0.1.1:6443; do sleep 5; done
+  - REMOTE_TOKEN=$(ssh -o StrictHostKeyChecking=accept-new cluster@10.0.1.1 sudo cat /var/lib/rancher/k3s/server/node-token)
+  - curl -sfL https://get.k3s.io | K3S_URL=https://10.0.1.1:6443 K3S_TOKEN=$REMOTE_TOKEN sh -
