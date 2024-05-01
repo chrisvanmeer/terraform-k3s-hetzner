@@ -2,11 +2,6 @@
 packages:
   - curl
 users:
-  - name: chris
-    ssh-authorized-keys:
-      - ${trimspace(own_public)}
-    sudo: ALL=(ALL) NOPASSWD:ALL
-    shell: /bin/bash
   - name: cluster
     ssh-authorized-keys:
       - ${trimspace(own_public)}

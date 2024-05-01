@@ -23,7 +23,7 @@ The IP address of the control plane node is outputted.
 
 ```shell
 export CONTROL_PLANE_NODE_IP="<control-plane-node_ip>"
-scp $CONTROL_PLANE_NODE_IP:/etc/rancher/k3s/k3s.yaml ~/.kube/config
+scp cluster@$CONTROL_PLANE_NODE_IP:/etc/rancher/k3s/k3s.yaml ~/.kube/config
 sed -i "s/127.0.0.1/$CONTROL_PLANE_NODE_IP/g" ~/.kube/config
 ```
 
